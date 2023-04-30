@@ -4,7 +4,7 @@ import { useRouter } from "@tanstack/router";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const Book = () => {
+const BookingForm = () => {
   const form = useForm({
     defaultValues: {
       date: new Date().toISOString().split("T")[0],
@@ -35,89 +35,94 @@ const Book = () => {
   });
 
   const router = useRouter();
+  return (
+    <Box
+      display="grid"
+      gap={3}
+      component="form"
+      onSubmit={form.handleSubmit((data) => {
+        console.log(data);
+        router.navigate({
+          to: "/book/success",
+        });
+      })}
+    >
+      <TextField
+        required
+        label="Date"
+        {...(form.formState.errors["date"] && {
+          error: true,
+          helperText: form.formState.errors["date"].message,
+        })}
+        type="date"
+        {...form.register("date")}
+      />
+      <TextField
+        required
+        label="Time"
+        {...(form.formState.errors["time"] && {
+          error: true,
+          helperText: form.formState.errors["time"].message,
+        })}
+        type="time"
+        {...form.register("time")}
+      />
+      <TextField
+        required
+        label="Seats"
+        {...(form.formState.errors["partySize"] && {
+          error: true,
+          helperText: form.formState.errors["partySize"].message,
+        })}
+        type="number"
+        {...form.register("partySize", {
+          valueAsNumber: true,
+        })}
+      />
+      <TextField
+        required
+        label="Name"
+        {...(form.formState.errors["name"] && {
+          error: true,
+          helperText: form.formState.errors["name"].message,
+        })}
+        type="text"
+        {...form.register("name")}
+      />
+      <TextField
+        label="Special requests"
+        {...(form.formState.errors["specialRequests"] && {
+          error: true,
+          helperText: form.formState.errors["specialRequests"].message,
+        })}
+        type="text"
+        multiline
+        minRows={4}
+        maxRows={8}
+        {...form.register("specialRequests")}
+      />
 
+      <Button
+        type="submit"
+        variant="contained"
+        sx={{
+          width: "fit-content",
+          alignSelf: "center",
+        }}
+      >
+        Submit
+      </Button>
+    </Box>
+  );
+};
+
+const Book = () => {
   return (
     <Box px={4} py={4} minWidth={"clamp(300px, 100%, 400px)"} justifySelf="center">
       <Typography mb={4} variant="h4">
         Book a table
       </Typography>
-      <Box
-        display="grid"
-        gap={3}
-        component="form"
-        onSubmit={form.handleSubmit((data) => {
-          console.log(data);
-          router.navigate({
-            to: "/book/success",
-          });
-        })}
-      >
-        <TextField
-          required
-          label="Date"
-          {...(form.formState.errors["date"] && {
-            error: true,
-            helperText: form.formState.errors["date"].message,
-          })}
-          type="date"
-          {...form.register("date")}
-        />
-        <TextField
-          required
-          label="Time"
-          {...(form.formState.errors["time"] && {
-            error: true,
-            helperText: form.formState.errors["time"].message,
-          })}
-          type="time"
-          {...form.register("time")}
-        />
-        <TextField
-          required
-          label="Seats"
-          {...(form.formState.errors["partySize"] && {
-            error: true,
-            helperText: form.formState.errors["partySize"].message,
-          })}
-          type="number"
-          {...form.register("partySize", {
-            valueAsNumber: true,
-          })}
-        />
-        <TextField
-          required
-          label="Name"
-          {...(form.formState.errors["name"] && {
-            error: true,
-            helperText: form.formState.errors["name"].message,
-          })}
-          type="text"
-          {...form.register("name")}
-        />
-        <TextField
-          label="Special requests"
-          {...(form.formState.errors["specialRequests"] && {
-            error: true,
-            helperText: form.formState.errors["specialRequests"].message,
-          })}
-          type="text"
-          multiline
-          minRows={4}
-          maxRows={8}
-          {...form.register("specialRequests")}
-        />
-
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{
-            width: "fit-content",
-            alignSelf: "center",
-          }}
-        >
-          Submit
-        </Button>
-      </Box>
+      <BookingForm />
     </Box>
   );
 };
