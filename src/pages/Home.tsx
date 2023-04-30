@@ -2,6 +2,7 @@ import { Box, Button, Card, CardContent, CardHeader, Container, Grid, Rating, Ty
 import { FoodCard } from "../components/FoodCard";
 import { theme } from "../theme";
 import { AppLink } from "../ui/AppLink";
+import { featuredMenuItems } from "../utils/menuItems";
 
 const imageUrl =
   "https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
@@ -26,7 +27,7 @@ const Hero = () => (
       <Typography variant="h1" color="primary.light">
         Little Lemon
       </Typography>
-      <Typography variant="h3" component="h2" color="primary" mt={-3}>
+      <Typography variant="h3" component="h2" color="primary" mt={-1}>
         Chicago
       </Typography>
       <Typography color={theme.palette.secondary.contrastText} mt={4} maxWidth="sm">
@@ -43,27 +44,6 @@ const Hero = () => (
     </Container>
   </Box>
 );
-
-const featuredMenuItems = [
-  {
-    title: "Shrimp and Chorizo Paella",
-    price: 26.99,
-    photoUrl:
-      "https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    title: "Fries",
-    price: 7.99,
-    photoUrl:
-      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    title: "Pancakes with Berries",
-    price: 12.99,
-    photoUrl:
-      "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-];
 
 const Featured = () => (
   <Box bgcolor={theme.palette.grey[200]}>
@@ -96,7 +76,7 @@ const ratings = [
     date: "2023-10-10",
   },
   {
-    name: "John Doe",
+    name: "Johnathan Doe",
     rating: 5,
     comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
     date: "2023-10-10",

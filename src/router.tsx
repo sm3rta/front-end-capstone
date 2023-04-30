@@ -1,8 +1,10 @@
-import { RootRoute, Route, Router } from "@tanstack/router";
+import { Outlet, RootRoute, Route, Router } from "@tanstack/router";
 import App from "./App";
+import About from "./pages/About";
 import Book from "./pages/Book";
 import BookSuccess from "./pages/BookSuccess";
 import Home from "./pages/Home";
+import Menu from "./pages/Menu";
 
 export const rootRoute = new RootRoute({
   component: App,
@@ -21,26 +23,32 @@ export const bookReservationSuccessRoute = new Route({
 });
 
 export const bookReservationRoute = new Route({
-  component: Book,
+  component: () => <Outlet />,
   getParentRoute: () => rootRoute,
   path: "/book",
 });
 
+export const bookReservationIndexRoute = new Route({
+  component: Book,
+  getParentRoute: () => bookReservationRoute,
+  path: "/",
+});
+
 export const menuRoute = new Route({
-  component: Home,
+  component: Menu,
   getParentRoute: () => rootRoute,
   path: "/menu",
 });
 
 export const aboutRoute = new Route({
-  component: Home,
+  component: About,
   getParentRoute: () => rootRoute,
   path: "/about",
 });
 
 export const routeTree = rootRoute.addChildren([
   homeRoute,
-  bookReservationRoute.addChildren([bookReservationSuccessRoute]),
+  bookReservationRoute.addChildren([bookReservationIndexRoute, bookReservationSuccessRoute]),
   menuRoute,
   aboutRoute,
 ]);

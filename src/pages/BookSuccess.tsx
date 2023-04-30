@@ -14,10 +14,10 @@ const BookSuccess = () => {
   }, [router]);
 
   return (
-    <Box px={4} py={4}>
-      <Typography variant="h2">Your reservation is confirmed!</Typography>
+    <Box px={4} py={4} gap={3} display="flex" flexDirection="column">
+      <Typography variant="h3">Your reservation is confirmed!</Typography>
       <Typography variant="body1">We'll send you a confirmation email shortly.</Typography>
-      <Typography variant="body2">You will be redirected to the home page in 5 seconds.</Typography>
+      <Typography variant="caption">You will be redirected to the home page in 5 seconds.</Typography>
     </Box>
   );
 };

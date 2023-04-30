@@ -37,7 +37,7 @@ const Book = () => {
   const router = useRouter();
 
   return (
-    <Box px={4} py={4}>
+    <Box px={4} py={4} minWidth={"clamp(300px, 100%, 400px)"} justifySelf="center">
       <Typography mb={4} variant="h4">
         Book a table
       </Typography>

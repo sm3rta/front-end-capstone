@@ -12,12 +12,21 @@ export const theme = createTheme({
       main: "#495E57",
     },
   },
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          whiteSpace: "nowrap",
+        },
+      },
+    },
+  },
   shadows: [
     "none",
-    "0px 0px 5px -5px rgba(0,0,0,0.3)",
-    "0px 0px 8px -5px rgba(0,0,0,0.3)",
+    "0px 0px 5px -3px rgba(0,0,0,0.3)",
+    "0px 0px 8px -4px rgba(0,0,0,0.3)",
     "0px 0px 10px -5px rgba(0,0,0,0.3)",
-    "0px 0px 12px -5px rgba(0,0,0,0.3)",
+    "0px 0px 12px -6px rgba(0,0,0,0.3)",
     "0px 0px 14px -7px rgba(0,0,0,0.3)",
     "0px 0px 16px -7px rgba(0,0,0,0.3)",
     "0px 0px 18px -7px rgba(0,0,0,0.3)",

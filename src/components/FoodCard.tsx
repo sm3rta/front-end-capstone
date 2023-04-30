@@ -1,6 +1,11 @@
-import { Card, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
+import { MenuItem } from "../utils/menuItems";
+import { useCartContext } from "../utils/useCart";
 
-export const FoodCard = ({ title, price, photoUrl }: { title: string; price: number; photoUrl: string }) => {
+export const FoodCard = (menuItem: MenuItem) => {
+  const { title, price, photoUrl } = menuItem;
+  const { addToCart } = useCartContext();
+
   return (
     <Card>
       <CardHeader title={title} subheader={`$${price}`} />
@@ -11,6 +16,16 @@ export const FoodCard = ({ title, price, photoUrl }: { title: string; price: num
           inventore, id reprehenderit quidem in ex maiores, numquam eum itaque perspiciatis. Porro, vel consequuntur.
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button
+          fullWidth
+          onClick={() => {
+            addToCart(menuItem);
+          }}
+        >
+          Add to Cart
+        </Button>
+      </CardActions>
     </Card>
   );
 };
